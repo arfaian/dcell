@@ -13,7 +13,7 @@ module DCell
     state :disconnected, to: [:connected, :shutdown]
     state :connected do
       send_heartbeat
-      transition :partitioned, delay: @heartbeat_timeout
+      transition :partitioned, delay: @heartbeat_timeout unless @id == DCell.id
       Logger.info "Connected to #{id}"
     end
     state :partitioned do

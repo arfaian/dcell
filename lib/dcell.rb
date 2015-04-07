@@ -112,7 +112,7 @@ module DCell
     # Updates server address of the node
     def addr=(addr)
       @addr = addr
-      Directory[id].address = addr
+      Directory[@id].address = addr
       @me.update_server_address addr
     end
     alias_method :address=, :addr=
@@ -131,7 +131,7 @@ module DCell
 
     # Run the DCell application in the background
     def run!
-      Directory[id].actors = local_actors
+      Directory[@id].actors = local_actors
       DCell::SupervisionGroup.run!
     end
 
